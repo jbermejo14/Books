@@ -1,0 +1,19 @@
+# Normalise to LF in the repository; check out native on Windows.
+* text=auto
+
+# The Gradle wrapper script is run by sh on Linux/macOS/CI — CRLF breaks it.
+gradlew text eol=lf
+*.sh text eol=lf
+
+# Windows-only scripts must keep CRLF.
+*.bat text eol=crlf
+
+# Never touch binaries.
+*.jar binary
+*.ttf binary
+*.otf binary
+*.png binary
+*.jpg binary
+*.webp binary
+*.apk binary
+*.aab binary

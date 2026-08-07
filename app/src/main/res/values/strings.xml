@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BookTracker</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_wishlist">Wishlist</string>
+    <string name="nav_pending">Pending</string>
+    <string name="nav_history">History</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_title">Digital Sanctuary</string>
+    <string name="greeting_morning">Good morning, Reader.</string>
+    <string name="greeting_afternoon">Good afternoon, Reader.</string>
+    <string name="greeting_evening">Good evening, Reader.</string>
+    <string name="greeting_subtitle">Your sanctuary awaits.</string>
+    <string name="currently_reading">Currently Reading</string>
+    <string name="books_actively_engaged">books actively engaged</string>
+    <string name="no_books_in_progress">Nothing in progress yet.</string>
+    <string name="update_progress">Update Progress</string>
+    <string name="current_page">Current Page</string>
+    <string name="total_pages_label">Total Pages</string>
+    <string name="live_preview">Live Preview</string>
+    <string name="update_sanctuary">Update Sanctuary</string>
+    <string name="recently_added">Recently Added</string>
+    <string name="see_collection">See Collection</string>
+    <string name="category_philosophy">Philosophy</string>
+    <string name="category_art_history">Art History</string>
+    <string name="category_science">Science</string>
+    <string name="category_view_all">View All</string>
+
+    <!-- Pending -->
+    <string name="pending_title">Pendientes</string>
+    <string name="filter_all_unread">All Unread</string>
+    <string name="filter_currently_reading">Currently Reading</string>
+    <string name="filter_next_up">Next Up</string>
+    <string name="sort">Sort</string>
+    <string name="sort_recent">Recently added</string>
+    <string name="sort_title">Title</string>
+    <string name="sort_progress">Progress</string>
+    <string name="section_in_progress">In Progress</string>
+    <string name="section_to_read">To Read</string>
+    <string name="page_of">Page %1$d of %2$d</string>
+    <string name="percent_complete">%1$d%%</string>
+    <string name="update">Update</string>
+
+    <!-- Shelves -->
+    <string name="wishlist_title">Wishlist</string>
+    <string name="history_title">History</string>
+    <string name="empty_pending">No books here yet. Time to start reading!</string>
+    <string name="empty_wishlist">Your wishlist is empty. Add something to look forward to.</string>
+    <string name="empty_history">Nothing finished yet. Keep turning those pages!</string>
+    <string name="empty_dashboard">Add your first book to begin your sanctuary.</string>
+
+    <!-- Add book -->
+    <string name="add_new_book">Add New Book</string>
+    <string name="add_book">Add book</string>
+    <string name="add_cover">Add Cover</string>
+    <string name="book_title">Book Title</string>
+    <string name="author">Author</string>
+    <string name="select_genre">Select Genre</string>
+    <string name="total_pages">Total Pages</string>
+    <string name="reading_status">Reading Status</string>
+    <string name="status_wishlist">Wishlist</string>
+    <string name="status_to_read">To Read</string>
+    <string name="status_reading">Reading</string>
+    <string name="status_finished">Finished</string>
+    <string name="add_to_library">ADD TO LIBRARY</string>
+    <string name="search_open_library">Search Open Library</string>
+    <string name="searching">Searching Open Library…</string>
+    <string name="search_failed">Could not reach Open Library. Check your connection or fill the form manually.</string>
+    <string name="search_hint">Start typing a title to search Open Library</string>
+    <string name="already_in_library">This book is already in your library.</string>
+    <string name="clear_cover">Remove cover</string>
+    <string name="first_published">First published %1$d</string>
+    <string name="pages_count">%1$d pages</string>
+
+    <!-- Discover / search -->
+    <string name="discover_title">Discover</string>
+    <string name="search_placeholder">Search by title, author or subject</string>
+    <string name="suggested">Suggested</string>
+    <string name="results">Results</string>
+    <string name="no_results">No books matched that search.</string>
+    <string name="in_library">In library</string>
+    <string name="add_manually">Add manually</string>
+    <string name="clear">Clear</string>
+    <string name="add_this_book">Add to library</string>
+    <string name="your_rating">Your rating</string>
+    <string name="your_notes">Your notes</string>
+    <string name="notes_placeholder">What did you think of it?</string>
+
+    <!-- Errors -->
+    <string name="error_title_required">Title is required</string>
+    <string name="error_author_required">Author is required</string>
+    <string name="error_total_pages_invalid">A page count is needed to track progress</string>
+    <string name="error_current_page_invalid">Must be between 0 and the total pages</string>
+
+    <!-- Shared -->
+    <string name="back">Back</string>
+    <string name="close">Close</string>
+    <string name="save">Save</string>
+    <string name="delete_book">Delete book</string>
+    <string name="cover_of">Cover of %1$s</string>
+    <string name="star_rating">%1$d of 5 stars</string>
+    <string name="rate_n_stars">Rate %1$d of 5 stars</string>
+    <string name="not_rated">Not rated</string>
+    <string name="rate_this_book">You finished it! Rate this book</string>
+    <string name="search">Search</string>
+</resources>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Libri - Add New Book</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#b4c8e4",
+                        "inverse-on-surface": "#f2f0f0",
+                        "tertiary": "#181815",
+                        "on-surface": "#1b1c1c",
+                        "background": "#fbf9f8",
+                        "surface-container": "#efeded",
+                        "on-surface-variant": "#43474d",
+                        "outline-variant": "#c4c6cd",
+                        "tertiary-fixed-dim": "#c9c6c0",
+                        "tertiary-fixed": "#e5e2db",
+                        "on-secondary-fixed": "#2c1600",
+                        "on-background": "#1b1c1c",
+                        "on-tertiary-fixed-variant": "#474742",
+                        "on-secondary-fixed-variant": "#623f18",
+                        "on-primary-fixed": "#061d32",
+                        "on-primary-container": "#8296b0",
+                        "primary": "#03192e",
+                        "surface-container-high": "#eae8e7",
+                        "secondary-fixed": "#ffdcbd",
+                        "on-primary": "#ffffff",
+                        "surface": "#fbf9f8",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#ffca98",
+                        "primary-container": "#1a2e44",
+                        "surface-container-highest": "#e4e2e2",
+                        "on-tertiary-fixed": "#1c1c18",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f5f3f3",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#fbf9f8",
+                        "error": "#ba1a1a",
+                        "secondary": "#7d562d",
+                        "tertiary-container": "#2d2d29",
+                        "surface-tint": "#4c6078",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#b4c8e4",
+                        "primary-fixed": "#d1e4ff",
+                        "on-primary-fixed-variant": "#35485f",
+                        "on-secondary": "#ffffff",
+                        "outline": "#74777d",
+                        "on-tertiary-container": "#96948e",
+                        "inverse-surface": "#303030",
+                        "secondary-fixed-dim": "#f0bd8b",
+                        "on-secondary-container": "#7a532a",
+                        "surface-dim": "#dbd9d9",
+                        "surface-variant": "#e4e2e2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "md": "24px",
+                        "gutter": "24px",
+                        "base": "8px",
+                        "sm": "12px",
+                        "xl": "80px",
+                        "xs": "4px",
+                        "margin-mobile": "16px",
+                        "lg": "48px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "display-lg": ["Libre Caslon Text"],
+                        "headline-md": ["Libre Caslon Text"],
+                        "headline-lg": ["Libre Caslon Text"],
+                        "label-md": ["Manrope"],
+                        "headline-lg-mobile": ["Libre Caslon Text"],
+                        "body-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Custom Input Styling */
+        .libri-input {
+            border: none;
+            border-bottom: 1px solid #c4c6cd;
+            background-color: transparent;
+            padding: 8px 0;
+            width: 100%;
+            transition: border-color 0.3s ease;
+        }
+        .libri-input:focus {
+            outline: none;
+            border-bottom: 2px solid #03192e;
+            box-shadow: none;
+        }
+        
+        /* Ambient Shadow */
+        .ambient-shadow {
+            box-shadow: 0 4px 16px rgba(3, 25, 46, 0.04);
+        }
+        
+        /* Hide scrollbar for clean aesthetic */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface h-full flex flex-col font-body-md selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-40 bg-surface dark:bg-surface-dim shadow-[0_4px_16px_rgba(3,25,46,0.04)]">
+<div class="flex items-center justify-between px-margin-mobile md:px-margin-desktop py-base w-full max-w-7xl mx-auto h-[64px]">
+<button class="text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary dark:text-primary-fixed-dim tracking-tight">Add New Book</h1>
+<div class="w-6 h-6"></div> <!-- Spacer for center alignment -->
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow overflow-y-auto pb-32 px-margin-mobile md:px-margin-desktop pt-md w-full max-w-3xl mx-auto">
+<!-- Cover Upload Area -->
+<div class="flex justify-center mb-lg">
+<div class="relative w-40 h-60 bg-surface-container rounded-lg ambient-shadow flex flex-col items-center justify-center border border-dashed border-outline-variant cursor-pointer hover:bg-surface-container-high transition-colors group">
+<span class="material-symbols-outlined text-4xl text-outline-variant mb-2 group-hover:text-primary transition-colors">add_photo_alternate</span>
+<span class="font-label-md text-label-md text-outline-variant group-hover:text-primary transition-colors">Add Cover</span>
+</div>
+</div>
+<!-- Form Fields -->
+<form class="space-y-md">
+<!-- Title -->
+<div class="relative">
+<input class="libri-input font-body-lg text-body-lg text-on-surface placeholder:text-outline-variant" id="title" placeholder="Book Title" required="" type="text"/>
+<button class="absolute right-0 top-1/2 -translate-y-1/2 text-outline-variant hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-2xl">barcode_scanner</span>
+</button>
+</div>
+<!-- Author -->
+<div>
+<input class="libri-input font-body-lg text-body-lg text-on-surface placeholder:text-outline-variant" id="author" placeholder="Author" required="" type="text"/>
+</div>
+<!-- Genre & Pages Grid -->
+<div class="grid grid-cols-2 gap-gutter">
+<div>
+<select class="libri-input font-body-lg text-body-lg text-on-surface appearance-none bg-transparent cursor-pointer" id="genre">
+<option class="text-outline-variant" disabled="" selected="" value="">Select Genre</option>
+<option value="fiction">Fiction</option>
+<option value="non-fiction">Non-Fiction</option>
+<option value="sci-fi">Sci-Fi &amp; Fantasy</option>
+<option value="mystery">Mystery &amp; Thriller</option>
+<option value="biography">Biography</option>
+</select>
+</div>
+<div>
+<input class="libri-input font-body-lg text-body-lg text-on-surface placeholder:text-outline-variant" id="pages" min="1" placeholder="Total Pages" type="number"/>
+</div>
+</div>
+<!-- Status Segmented Control -->
+<div class="pt-sm">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-sm">Reading Status</label>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-2 bg-surface-container p-1 rounded-lg">
+<!-- Wishlist (Active by default for this example context) -->
+<label class="cursor-pointer">
+<input class="peer sr-only" name="status" type="radio" value="wishlist"/>
+<div class="text-center py-2 rounded-md font-label-md text-label-md text-on-surface-variant peer-checked:bg-primary peer-checked:text-on-primary transition-colors shadow-sm">
+                            Wishlist
+                        </div>
+</label>
+<!-- To Read -->
+<label class="cursor-pointer">
+<input checked="" class="peer sr-only" name="status" type="radio" value="toread"/>
+<div class="text-center py-2 rounded-md font-label-md text-label-md text-on-surface-variant peer-checked:bg-primary peer-checked:text-on-primary transition-colors">
+                            To Read
+                        </div>
+</label>
+<!-- Reading -->
+<label class="cursor-pointer">
+<input class="peer sr-only" name="status" type="radio" value="reading"/>
+<div class="text-center py-2 rounded-md font-label-md text-label-md text-on-surface-variant peer-checked:bg-primary peer-checked:text-on-primary transition-colors">
+                            Reading
+                        </div>
+</label>
+<!-- Finished -->
+<label class="cursor-pointer">
+<input class="peer sr-only" name="status" type="radio" value="finished"/>
+<div class="text-center py-2 rounded-md font-label-md text-label-md text-on-surface-variant peer-checked:bg-primary peer-checked:text-on-primary transition-colors">
+                            Finished
+                        </div>
+</label>
+</div>
+</div>
+<!-- Submit Button (Fixed at bottom on mobile, inline on desktop) -->
+<div class="fixed bottom-[88px] left-0 w-full px-margin-mobile md:static md:w-auto md:px-0 md:pt-md z-30">
+<button class="w-full bg-primary text-on-primary py-3 rounded-full font-label-md text-label-md tracking-wider shadow-lg hover:opacity-90 transition-opacity active:scale-[0.98]" type="button">
+                    ADD TO LIBRARY
+                </button>
+</div>
+</form>
+</main>
+<!-- BottomNavBar (Mobile Only based on layout logic, though requirement asked to include it) -->
+<!-- Note: Following semantic shell mandate, this might be suppressed on a pure transactional page like 'Add Book', but user explicitly requested it. We will render it for compliance with prompt. -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container-low dark:bg-tertiary-container shadow-[0_-4px_16px_rgba(3,25,46,0.04)]">
+<div class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-2 bg-surface-container-low dark:bg-tertiary-container rounded-t-xl">
+<!-- Dashboard -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant p-2 hover:text-primary dark:hover:text-primary-fixed transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[24px]">dashboard</span>
+<span class="font-label-sm text-label-sm mt-1">Dashboard</span>
+</a>
+<!-- Wishlist -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant p-2 hover:text-primary dark:hover:text-primary-fixed transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[24px]">auto_stories</span>
+<span class="font-label-sm text-label-sm mt-1">Wishlist</span>
+</a>
+<!-- Pending / Add (Active state mapped loosely to intent, but "Dashboard" is safer default if no exact match. Let's make none active as it's a modal-like view, or highlight Dashboard) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant p-2 hover:text-primary dark:hover:text-primary-fixed transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[24px]">hourglass_empty</span>
+<span class="font-label-sm text-label-sm mt-1">Pending</span>
+</a>
+<!-- History -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant p-2 hover:text-primary dark:hover:text-primary-fixed transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[24px]">history</span>
+<span class="font-label-sm text-label-sm mt-1">History</span>
+</a>
+</div>
+</nav>
+<script>
+        // Simple script to handle floating label/input focus states if needed in future
+        document.querySelectorAll('.libri-input').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('focused');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('focused');
+            });
+        });
+    </script>
+</body></html>

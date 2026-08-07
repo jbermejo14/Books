@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Libri - Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#74777d",
+                        "inverse-primary": "#b4c8e4",
+                        "on-secondary-fixed": "#2c1600",
+                        "inverse-surface": "#303030",
+                        "on-tertiary-container": "#96948e",
+                        "surface": "#fbf9f8",
+                        "secondary-fixed": "#ffdcbd",
+                        "on-secondary-fixed-variant": "#623f18",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#03192e",
+                        "surface-dim": "#dbd9d9",
+                        "primary-container": "#1a2e44",
+                        "on-error": "#ffffff",
+                        "on-surface": "#1b1c1c",
+                        "on-primary": "#ffffff",
+                        "tertiary": "#181815",
+                        "surface-tint": "#4c6078",
+                        "surface-bright": "#fbf9f8",
+                        "secondary-fixed-dim": "#f0bd8b",
+                        "on-primary-container": "#8296b0",
+                        "on-surface-variant": "#43474d",
+                        "outline-variant": "#c4c6cd",
+                        "primary-fixed": "#d1e4ff",
+                        "background": "#fbf9f8",
+                        "inverse-on-surface": "#f2f0f0",
+                        "on-secondary-container": "#7a532a",
+                        "tertiary-container": "#2d2d29",
+                        "surface-container-low": "#f5f3f3",
+                        "surface-container-highest": "#e4e2e2",
+                        "surface-container": "#efeded",
+                        "on-tertiary-fixed": "#1c1c18",
+                        "tertiary-fixed-dim": "#c9c6c0",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#e4e2e2",
+                        "secondary-container": "#ffca98",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary": "#7d562d",
+                        "primary-fixed-dim": "#b4c8e4",
+                        "on-primary-fixed-variant": "#35485f",
+                        "on-tertiary-fixed-variant": "#474742",
+                        "surface-container-high": "#eae8e7",
+                        "tertiary-fixed": "#e5e2db",
+                        "on-background": "#1b1c1c",
+                        "on-primary-fixed": "#061d32"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "sm": "12px",
+                        "base": "8px",
+                        "md": "24px",
+                        "lg": "48px",
+                        "margin-desktop": "64px",
+                        "xl": "80px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "headline-md": ["Libre Caslon Text"],
+                        "display-lg": ["Libre Caslon Text"],
+                        "headline-lg": ["Libre Caslon Text"],
+                        "body-md": ["Manrope"],
+                        "headline-lg-mobile": ["Libre Caslon Text"],
+                        "label-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen pt-16 pb-20 md:pb-0">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-dim shadow-[0_4px_16px_rgba(3,25,46,0.04)] shadow-sm flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16">
+<button class="text-on-surface-variant dark:text-outline hover:bg-surface-container-high transition-colors active:scale-95 duration-200 p-2 rounded-full hidden md:flex">
+<span class="material-symbols-outlined">menu_book</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-on-primary-fixed">Digital Sanctuary</h1>
+<button class="text-on-surface-variant dark:text-outline hover:bg-surface-container-high transition-colors active:scale-95 duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined">search</span>
+</button>
+</header>
+<main class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop py-md md:py-lg grid grid-cols-4 md:grid-cols-12 gap-gutter">
+<!-- Welcome Section -->
+<div class="col-span-4 md:col-span-12 mb-md">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-xs">Good morning, Reader.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Your sanctuary awaits.</p>
+</div>
+<!-- Reading Progress Bento Box -->
+<div class="col-span-4 md:col-span-8 bg-surface-container-lowest rounded-xl p-md shadow-[0_4px_16px_rgba(3,25,46,0.04)] relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary-container"></div>
+<div class="flex justify-between items-start mb-lg">
+<div>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-xs">Currently Reading</h3>
+<p class="font-display-lg text-display-lg text-primary">3</p>
+<p class="font-body-md text-body-md text-on-surface-variant">books actively engaged</p>
+</div>
+<button class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center hover:bg-primary-container transition-colors shadow-md">
+<span class="material-symbols-outlined">auto_stories</span>
+</button>
+</div>
+<!-- Progress Item -->
+<div class="flex items-center gap-sm mt-md">
+<img alt="Book cover" class="w-12 h-16 object-cover rounded shadow-sm flex-shrink-0" data-alt="A minimalist book cover featuring subtle geometric shapes in pale gold and ink blue on a pristine white background. The aesthetic is clean, modern, and intellectual, fitting a sophisticated digital library interface. Soft, high-key lighting creates a serene atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjuYz6SrTOOb-VRLcIHp80AykeQEg2yLXVglG7MvSDkbsdxN27VjxO3_pXntkRalplLyZ-N1IgoNyBKQbNf_6iqfkSmNLucA2UMFLQexdbpmL52zxodw2xis2S_7CKICBRfzoNir0XCt-NZe68V57ZiTcn5xUPBuLPLuI3TG1lIdElC03K_6QWr6xZTAM4D_xJTfFJ3fIblF74QXaYXYdVaXY3iqsDitUh6udAwD52mIlyY_lD4VsM"/>
+<div class="flex-grow">
+<h4 class="font-label-md text-label-md text-primary mb-1 line-clamp-1">The Architecture of Stillness</h4>
+<div class="w-full h-1 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container rounded-full" style="width: 65%;"></div>
+</div>
+<div class="flex justify-between mt-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">65%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Page 214 of 328</span>
+</div>
+</div>
+</div>
+</div><div class="col-span-4 md:col-span-4 bg-surface-container-lowest rounded-xl p-md shadow-[0_4px_16px_rgba(3,25,46,0.04)] flex flex-col gap-md md:col-span-12 md:grid-cols-4">
+<div>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-sm">Update Progress</h3>
+<div class="flex flex-col gap-sm">
+<div class="flex flex-col gap-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Current Page</label>
+<input class="w-full bg-surface-container-low border border-surface-variant rounded-lg px-4 py-2 font-body-md text-primary focus:outline-none focus:border-primary transition-colors" type="number" value="214"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Total Pages</label>
+<input class="w-full bg-surface-container-low border border-surface-variant rounded-lg px-4 py-2 font-body-md text-primary focus:outline-none focus:border-primary transition-colors" type="number" value="328"/>
+</div>
+</div>
+</div>
+<div class="mt-auto">
+<div class="flex justify-between mb-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Live Preview</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">65%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container rounded-full transition-all duration-500" style="width: 65%;"></div>
+</div>
+<button class="w-full mt-md bg-primary text-on-primary font-label-md py-3 rounded-lg hover:bg-primary-container transition-colors active:scale-95 duration-200 shadow-sm">Update Sanctuary</button>
+</div>
+</div>
+<!-- Quick Access Categories -->
+<div class="col-span-4 md:col-span-4 grid grid-cols-2 gap-sm">
+<button class="bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-xl p-md flex flex-col items-center justify-center gap-sm shadow-sm border border-surface-variant">
+<span class="material-symbols-outlined text-primary text-3xl">psychology</span>
+<span class="font-label-md text-label-md text-on-surface">Philosophy</span>
+</button>
+<button class="bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-xl p-md flex flex-col items-center justify-center gap-sm shadow-sm border border-surface-variant">
+<span class="material-symbols-outlined text-primary text-3xl">brush</span>
+<span class="font-label-md text-label-md text-on-surface">Art History</span>
+</button>
+<button class="bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-xl p-md flex flex-col items-center justify-center gap-sm shadow-sm border border-surface-variant">
+<span class="material-symbols-outlined text-primary text-3xl">science</span>
+<span class="font-label-md text-label-md text-on-surface">Science</span>
+</button>
+<button class="bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-xl p-md flex flex-col items-center justify-center gap-sm shadow-sm border border-surface-variant">
+<span class="material-symbols-outlined text-primary text-3xl">more_horiz</span>
+<span class="font-label-md text-label-md text-on-surface">View All</span>
+</button>
+</div>
+<!-- Recently Added Section -->
+<div class="col-span-4 md:col-span-12 mt-lg">
+<div class="flex justify-between items-end mb-md border-b border-surface-variant pb-sm">
+<h3 class="font-headline-md text-headline-md text-primary">Recently Added</h3>
+<button class="font-label-md text-label-md text-secondary hover:text-on-secondary-container transition-colors">See Collection</button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-md">
+<!-- Book Card 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-[2/3] rounded-lg overflow-hidden shadow-sm group-hover:shadow-md transition-shadow relative bg-surface-variant mb-sm">
+<img alt="Book cover" class="w-full h-full object-cover" data-alt="A sophisticated book cover design featuring abstract topography lines in muted charcoal and cream. The style is minimalist and high-end, suited for a non-fiction architecture or design book within a serene, light-mode digital library setting. Soft, diffused lighting highlights the subtle paper texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvgpBsgXmoDW-Nv9-8xEzQSJxUCBEFm9pPboYkvNNzMUpKKDdisQBIf0Kh0Uidg-Qbg77k5dZMJm8fkHhzl7BAwsCM7QSThgEhxhz2bx_q-FQ7yg1eZaMffSprk30-Vy3n7EG7Hv7e-eFiOsPEV0QJuBlQnuY8Raf6D9ZWWCc0ihIooD_GTI6srSto2t4x71reufujCO8lvowFCo43hFV9xGM4Qy_SEoZq-RDBmXyG2OQIDKBZtLrm"/>
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors"></div>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface line-clamp-1 group-hover:text-primary transition-colors">Modern Spaces</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">E. Kensington</p>
+</div>
+<!-- Book Card 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-[2/3] rounded-lg overflow-hidden shadow-sm group-hover:shadow-md transition-shadow relative bg-surface-variant mb-sm">
+<img alt="Book cover" class="w-full h-full object-cover" data-alt="An elegant book cover showing a stark, single monochrome tree branch against a pure white background. The aesthetic is extremely minimalist, evoking a sense of calm and tactile paper quality. The lighting is bright and even, perfect for a refined reading app UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7z1qr-hl-cdtC-BvcMyJ9MoufvmOgLYS7P_hoRjyUIF2BHj7MobzIF0nDDgKQwIGCCTiYn5jg5fHkqsVrfNNT048_sw4hFQIMs2I_hfUD4znOrX3MxuQXKwNbmXhJ9kcDHcPbQyMKPkQvl_Hjya6mBJRiu3Zc75ho73ll8PeVoZhNIjjYMNOVXeI_c8fE_WBxkuP_0Ay2zR4TkOKzogRHoZ7aerMLDUP3hwCVUTx3I6q0YP3He8IU"/>
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors"></div>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface line-clamp-1 group-hover:text-primary transition-colors">Silence &amp; Light</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">L. Kahn</p>
+</div>
+<!-- Book Card 3 -->
+<div class="group cursor-pointer">
+<div class="aspect-[2/3] rounded-lg overflow-hidden shadow-sm group-hover:shadow-md transition-shadow relative bg-surface-variant mb-sm">
+<img alt="Book cover" class="w-full h-full object-cover" data-alt="A minimalist book cover design relying entirely on elegant typography. The title 'Grid Systems' is set in a crisp, sans-serif font in deep ink blue on a warm paper-white background. The design feels structured, clean, and highly professional, reflecting a high-end editorial aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQqr9n63rndHsEEPO11Rf4bgvpljd2uUcRzoi6oZK7Dhf51-b76naBkTmoDyIrIk78A5oJI7E7PwIUjhf18BcM2HRTl8RTdtVt8zvgAQgcloFLkWEOuHagBsyi48So80MFrW3sRB2PQgKJMB86B984pQNA34n-AsJAsz-I_MKqHXRMZDXRhww6KInvWX5hEe8n1V7GictUChdkBIu2wPID7ltcJ7wSXlx5U-dRuATW9dG9L2LuoYYz"/>
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors"></div>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface line-clamp-1 group-hover:text-primary transition-colors">Grid Systems</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">J. Muller</p>
+</div>
+<!-- Book Card 4 -->
+<div class="group cursor-pointer hidden md:block">
+<div class="aspect-[2/3] rounded-lg overflow-hidden shadow-sm group-hover:shadow-md transition-shadow relative bg-surface-variant mb-sm">
+<img alt="Book cover" class="w-full h-full object-cover" data-alt="A serene book cover featuring a soft gradient transition from pale dusk blue to stark white. A thin, delicate silver line cuts across horizontally. The overall mood is quiet, contemplative, and luxurious, matching a minimalist digital library experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXmqoOsKwLGlhRfNGkWvW_fKV0dMv78EGgP-uj1DqJY1sfdjjlZHAwD-VQzQBTUlseGXuqQ94a_sF_CSnDXKQfcl5b1DIRUWxoQ8xRkKdAq1gBF9yQpLzqO-BCR_6dn4jULmCOSnuOKWQ8MxQ0Aj2UEeldQTMQ7zi-m8YIHC7IKfs95IGvlfJj3P0nqBXzlGnzXmR_noVG2V2e2ikGgIWMOgQBdNtdIpYnpD6Cc9Q5gEVUkZmecamt"/>
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors"></div>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface line-clamp-1 group-hover:text-primary transition-colors">The Horizon</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">A. Varma</p>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface dark:bg-surface-dim shadow-[0_-4px_16px_rgba(3,25,46,0.04)] shadow-lg flex justify-around items-center h-20 pb-safe px-4 md:hidden">
+<!-- Active Tab: Dashboard -->
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined filled">dashboard</span>
+<span class="font-label-sm text-label-sm mt-1">Dashboard</span>
+</a>
+<!-- Inactive Tab: Wishlist -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-4 py-1 hover:text-primary dark:hover:text-inverse-primary active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">bookmark_add</span>
+<span class="font-label-sm text-label-sm mt-1">Wishlist</span>
+</a>
+<!-- Inactive Tab: Pending -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-4 py-1 hover:text-primary dark:hover:text-inverse-primary active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-label-sm text-label-sm mt-1">Pending</span>
+</a>
+<!-- Inactive Tab: History -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-4 py-1 hover:text-primary dark:hover:text-inverse-primary active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">history_edu</span>
+<span class="font-label-sm text-label-sm mt-1">History</span>
+</a>
+</nav>
+</body></html>

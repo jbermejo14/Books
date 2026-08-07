@@ -1,0 +1,22 @@
+# Gradle / build output
+.gradle/
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+
+# Kotlin compiler session data
+.kotlin/
+
+# Machine-specific: points at this workstation's Android SDK
+local.properties
+
+# IDE
+*.iml
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

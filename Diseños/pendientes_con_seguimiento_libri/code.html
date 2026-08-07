@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Digital Sanctuary - Pendientes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "outline": "#74777d",
+                        "inverse-primary": "#b4c8e4",
+                        "on-secondary-fixed": "#2c1600",
+                        "inverse-surface": "#303030",
+                        "on-tertiary-container": "#96948e",
+                        "surface": "#fbf9f8",
+                        "secondary-fixed": "#ffdcbd",
+                        "on-secondary-fixed-variant": "#623f18",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#03192e",
+                        "surface-dim": "#dbd9d9",
+                        "primary-container": "#1a2e44",
+                        "on-error": "#ffffff",
+                        "on-surface": "#1b1c1c",
+                        "on-primary": "#ffffff",
+                        "tertiary": "#181815",
+                        "surface-tint": "#4c6078",
+                        "surface-bright": "#fbf9f8",
+                        "secondary-fixed-dim": "#f0bd8b",
+                        "on-primary-container": "#8296b0",
+                        "on-surface-variant": "#43474d",
+                        "outline-variant": "#c4c6cd",
+                        "primary-fixed": "#d1e4ff",
+                        "background": "#fbf9f8",
+                        "inverse-on-surface": "#f2f0f0",
+                        "on-secondary-container": "#7a532a",
+                        "tertiary-container": "#2d2d29",
+                        "surface-container-low": "#f5f3f3",
+                        "surface-container-highest": "#e4e2e2",
+                        "surface-container": "#efeded",
+                        "on-tertiary-fixed": "#1c1c18",
+                        "tertiary-fixed-dim": "#c9c6c0",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#e4e2e2",
+                        "secondary-container": "#ffca98",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary": "#7d562d",
+                        "primary-fixed-dim": "#b4c8e4",
+                        "on-primary-fixed-variant": "#35485f",
+                        "on-tertiary-fixed-variant": "#474742",
+                        "surface-container-high": "#eae8e7",
+                        "tertiary-fixed": "#e5e2db",
+                        "on-background": "#1b1c1c",
+                        "on-primary-fixed": "#061d32"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "sm": "12px",
+                        "base": "8px",
+                        "md": "24px",
+                        "lg": "48px",
+                        "margin-desktop": "64px",
+                        "xl": "80px",
+                        "xs": "4px"
+                    },
+                    fontFamily: {
+                        "label-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "headline-md": ["Libre Caslon Text"],
+                        "display-lg": ["Libre Caslon Text"],
+                        "headline-lg": ["Libre Caslon Text"],
+                        "body-md": ["Manrope"],
+                        "headline-lg-mobile": ["Libre Caslon Text"],
+                        "label-sm": ["Manrope"]
+                    },
+                    fontSize: {
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .book-shadow {
+            box-shadow: 0 4px 16px rgba(3, 25, 46, 0.04);
+        }
+        
+        /* Progress bar styling */
+        progress::-webkit-progress-bar {
+            background-color: theme('colors.surface-container-high');
+            border-radius: 999px;
+        }
+        progress::-webkit-progress-value {
+            background-color: theme('colors.secondary');
+            border-radius: 999px;
+        }
+        progress::-moz-progress-bar {
+            background-color: theme('colors.secondary');
+            border-radius: 999px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-32 pt-20 flex flex-col md:items-center">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-dim shadow-[0_4px_16px_rgba(3,25,46,0.04)] shadow-sm">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 max-w-7xl mx-auto w-full">
+<button class="text-on-surface-variant dark:text-outline hover:bg-surface-container-high transition-colors active:scale-95 duration-200 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">menu_book</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-inverse-primary tracking-tight">Pendientes</h1>
+<button class="text-on-surface-variant dark:text-outline hover:bg-surface-container-high transition-colors active:scale-95 duration-200 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop flex-1 flex flex-col gap-lg">
+<!-- Filter/Sort Utility Bar -->
+<div class="flex items-center justify-between py-sm border-b border-surface-container-highest">
+<div class="flex gap-sm overflow-x-auto no-scrollbar pb-xs">
+<button class="bg-surface text-on-surface border border-outline-variant rounded-full px-4 py-1.5 font-label-sm text-label-sm whitespace-nowrap active:scale-95 transition-transform hover:bg-surface-container-low">All Unread</button>
+<button class="bg-secondary-container text-on-secondary-container border border-transparent rounded-full px-4 py-1.5 font-label-sm text-label-sm whitespace-nowrap active:scale-95 transition-transform">Currently Reading</button>
+<button class="bg-surface text-on-surface border border-outline-variant rounded-full px-4 py-1.5 font-label-sm text-label-sm whitespace-nowrap active:scale-95 transition-transform hover:bg-surface-container-low">Next Up</button>
+</div>
+<button class="flex items-center gap-xs text-on-surface-variant font-label-sm text-label-sm ml-4">
+<span class="material-symbols-outlined text-[18px]">sort</span>
+                Sort
+            </button>
+</div>
+<!-- Currently Reading Section -->
+<section class="flex flex-col gap-md">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">In Progress</h2>
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-margin-mobile md:gap-gutter">
+<!-- Book Card: Reading 1 -->
+<article class="flex flex-col gap-xs group cursor-pointer">
+<div class="relative w-full aspect-[2/3] rounded bg-surface-container-highest overflow-hidden book-shadow transition-transform duration-300 group-hover:-translate-y-1">
+<img alt="Book cover" class="w-full h-full object-cover" data-alt="A minimalist book cover design featuring abstract geometric shapes in deep blue and gold. The title 'The Architecture of Time' is written in an elegant serif font. The overall aesthetic is clean, modern, and intellectual, fitting a sophisticated digital library interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNE_pZr15DjbbSf0hfmj1dgocE10vq9WthKK5xlW-kQ_MMlwWzVOTjWcXkFwpWDJro9mNyI2nlMFuvxTwA7qHjQ3RAAb9r-nOpENYKBQda-CevgXdpJmHEL1x2NOWgNWvgYotxfYahfHAlG_lX_ZA0-esGrEcHUXVfIGflvIbUTTPe8UrpALnyQ2CTRROn1amcaw3PtD4FtGNxxzBJsmTuacxcXgv6erTLRUKWLZyGAHb-5FF39Sb8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+</div>
+<div class="pt-sm">
+<h3 class="font-label-md text-label-md text-on-surface truncate">The Architecture of Time</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Elena Rostova</p>
+</div>
+<div class="flex flex-col gap-xs mt-xs"><div class="flex justify-between items-center mb-1"><span class="font-label-sm text-label-sm text-on-surface-variant">Page 148 of 328</span><button class="text-primary hover:text-secondary transition-colors flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">edit</span><span class="font-label-sm text-label-sm">Update</span></button></div><progress class="w-full h-1 cursor-pointer" max="100" value="45"></progress><span class="font-label-sm text-label-sm text-on-surface-variant text-right">45%</span></div>
+</article>
+<!-- Book Card: Reading 2 -->
+<article class="flex flex-col gap-xs group cursor-pointer">
+<div class="relative w-full aspect-[2/3] rounded bg-surface-container-highest overflow-hidden book-shadow transition-transform duration-300 group-hover:-translate-y-1">
+<img alt="Book cover" class="w-full h-full object-cover" data-alt="A tranquil book cover showing a misty morning over a dense pine forest. The title 'Silent Echoes' is subtly placed in the top third in a sans-serif font. The color palette is dominated by soft greens, grays, and whites, conveying a calm, serene mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKpiSiJhFLeNHhak6BjFLsdBW-wPFIfnUBSWEAMJ4Hu0EzmHdcrIJRU3lN8JeKHBk8S5euAeIn8twMMj6f02tLUHkx2U0W-v5RPOCkkjffZEzLzHBtvu9k6tU2Xp7OY4lmYaGjB8cWUbLSBA53E9Yfvy-XCqnLTAbJ9sKBiM1gDA-cL6S6I3J8vFkXyvQCKOog_gEaTTOE1nlPqxpL3F1JFW3bLlgUec7oU4XhCmNnHgN1ZHyRT2n8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+</div>
+<div class="pt-sm">
+<h3 class="font-label-md text-label-md text-on-surface truncate">Silent Echoes</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Marcus Thorne</p>
+</div>
+<div class="flex flex-col gap-xs mt-xs"><div class="flex justify-between items-center mb-1"><span class="font-label-sm text-label-sm text-on-surface-variant">Page 32 of 264</span><button class="text-primary hover:text-secondary transition-colors flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">edit</span><span class="font-label-sm text-label-sm">Update</span></button></div><progress class="w-full h-1 cursor-pointer" max="100" value="12"></progress><span class="font-label-sm text-label-sm text-on-surface-variant text-right">12%</span></div>
+</article>
+</div>
+</section>
+<!-- Unread / Backlog Section -->
+<section class="flex flex-col gap-md mt-lg">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">To Read</h2>
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-margin-mobile md:gap-gutter">
+<!-- Book Card: Unread 1 -->
+<article class="flex flex-col gap-xs group cursor-pointer">
+<div class="relative w-full aspect-[2/3] rounded bg-surface-container-highest overflow-hidden book-shadow transition-transform duration-300 group-hover:-translate-y-1">
+<img alt="Book cover" class="w-full h-full object-cover" data-alt="A stark, minimalist book cover with a pure white background. In the center, a single, detailed illustration of an antique brass key. The title 'Unlocking Design' is below it in a classic typeface. The look is premium, tactile, and focuses on high-quality negative space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7DwzvjfTjks32_XO5LN-N6WwWicVVqSAuzgIk6Q0BR-YUkUtnU65dkTg5GeJ_zz-GnNrLhl6bAtBugCBPs0iyRJvLRuWTzbA5C6cUBS_L_PrbfGq87CUpJ8tMEEsz2nIpFIQUW9s3d28G_15Bw3k2G6SPVBzKrIx9_ULH74YT_2AqfluYx2tAkHnhwsqqqPj7ov2uuwA3iavk6HZB_r9WZ8I6q14e23LEHN2R7GWrxguyUJbr1OSr"/>
+</div>
+<div class="pt-sm">
+<h3 class="font-label-md text-label-md text-on-surface truncate">Unlocking Design</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Sarah Jenkins</p>
+</div>
+</article>
+<!-- Book Card: Unread 2 -->
+<article class="flex flex-col gap-xs group cursor-pointer">
+<div class="relative w-full aspect-[2/3] rounded bg-surface-container-highest overflow-hidden book-shadow transition-transform duration-300 group-hover:-translate-y-1">
+<img alt="Book cover" class="w-full h-full object-cover" data-alt="An atmospheric book cover featuring a macro shot of rough, handmade paper texture illuminated by warm, raking light. The title 'Tactile Memories' is debossed into the texture. The palette consists of warm creams, soft ambers, and deep shadows, emphasizing physical materials." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjoL4RioaePGdxw1vw54jfre3QJ5F4kVDmcPOgEbZvjWbEH-6wnrc33K10xQBWy4JUSUVTMuTDDUTTUlfmbKkYoswRHLEyDsY-nSUTHmK9540Inim43J6knFNwFW17MOyGkyjw_fGbrhIKpIFggY3XG1xUy-AeftiPS2UGbimoitAJJPwjYfoigIHsQfzRD8gWmAZ5uSRy-Zvyu_LWu-y10ehkY4_vGrA2vfFwpJH03fQ-I_WMO26U"/>
+</div>
+<div class="pt-sm">
+<h3 class="font-label-md text-label-md text-on-surface truncate">Tactile Memories</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Julian Vance</p>
+</div>
+</article>
+<!-- Book Card: Unread 3 -->
+<article class="flex flex-col gap-xs group cursor-pointer">
+<div class="relative w-full aspect-[2/3] rounded bg-surface-container-highest overflow-hidden book-shadow transition-transform duration-300 group-hover:-translate-y-1">
+<img alt="Book cover" class="w-full h-full object-cover" data-alt="A modern book cover utilizing a bento-grid layout. The cover is divided into structured blocks containing varying shades of ink blue and paper white, with tiny, delicate typography in one corner saying 'Structured Thought'. It feels highly organized and clean." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9x8ZNes5nkn_9yiVOJCTMekC13Uay-J4cCxl3KuX3vGCfbgj7Lrw0EXxAk6mbAL4vzWVMZL5KyzBvDht03C5K-6AIXMyVcEXZ1Z_XXgNgaZv8dzzfT_3cqa9l7TDeL5HOfokGS1b658yYT7LhYlnqNp8Fs3AAwBW-x-Tk8RRW_GZgkZxoPJZ-witGzVP2llr8tq91SffMFdz2qmbQblsqSVQkXgfcAwF-fGgqEJRi5iB6YZIh--vF"/>
+</div>
+<div class="pt-sm">
+<h3 class="font-label-md text-label-md text-on-surface truncate">Structured Thought</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">A.I. Researcher</p>
+</div>
+</article>
+<!-- Book Card: Unread 4 -->
+<article class="flex flex-col gap-xs group cursor-pointer">
+<div class="relative w-full aspect-[2/3] rounded bg-surface-container-highest overflow-hidden book-shadow transition-transform duration-300 group-hover:-translate-y-1">
+<img alt="Book cover" class="w-full h-full object-cover" data-alt="A beautiful, quiet book cover design showing a single, perfectly formed droplet of water hitting a dark, inky surface, creating concentric ripples. The title 'Stillness' is written in a very light, thin sans-serif font. The mood is meditative and calm." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrpM6cRG2Svf8aGdexcXaCEz_L5kUbYceaMxm5zBL-rO2n_DYr55G089vpA_yAYKRfaEAk_MUg9dR4XCwrWuQh37bUkChP6kU8jfbxGZwr1mVASlfew8bpSzJIMEalEYXrbQI91a3uczH24iy-oN36BlpzWTt2NaDp6XzHP5JvwjNh5GFzItci8WuFvNeTLbJWCPCrlwe_ieNrdTUjsWKbAIv0dSjO6D_iROVkeTJbIh23O9wAtPwk"/>
+</div>
+<div class="pt-sm">
+<h3 class="font-label-md text-label-md text-on-surface truncate">Stillness</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Maya Lin</p>
+</div>
+</article>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface dark:bg-surface-dim shadow-[0_-4px_16px_rgba(3,25,46,0.04)] shadow-lg md:hidden">
+<div class="flex justify-around items-center h-20 pb-safe px-4">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-4 py-1 hover:text-primary dark:hover:text-inverse-primary active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm mt-1">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-4 py-1 hover:text-primary dark:hover:text-inverse-primary active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">bookmark_add</span>
+<span class="font-label-sm text-label-sm mt-1">Wishlist</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-4 py-1 hover:text-primary dark:hover:text-inverse-primary active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined fill">auto_stories</span>
+<span class="font-label-sm text-label-sm mt-1">Pending</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-4 py-1 hover:text-primary dark:hover:text-inverse-primary active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">history_edu</span>
+<span class="font-label-sm text-label-sm mt-1">History</span>
+</a>
+</div>
+</nav>
+<!-- Decorative ambient shadow overlay for extreme bottom edge on desktop -->
+<div class="fixed bottom-0 w-full h-8 bg-gradient-to-t from-surface to-transparent pointer-events-none hidden md:block z-40"></div>
+</body></html>
