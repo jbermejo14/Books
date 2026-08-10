@@ -23,7 +23,12 @@ class DefaultAppContainer(private val context: Context) : AppContainer {
     }
 
     override val bookRepository: BookRepository by lazy {
-        BookRepository(BookDatabase.getDatabase(context).bookDao())
+        val database = BookDatabase.getDatabase(context)
+        BookRepository(
+            bookDao = database.bookDao(),
+            sessionDao = database.readingSessionDao(),
+            goalDao = database.readingGoalDao()
+        )
     }
 
     override val openLibraryRepository: OpenLibraryRepository by lazy {

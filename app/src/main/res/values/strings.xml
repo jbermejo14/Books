@@ -91,6 +91,25 @@
     <string name="your_notes">Your notes</string>
     <string name="notes_placeholder">What did you think of it?</string>
 
+
+    <!-- Reading goal + stats -->
+    <string name="goal_title">%1$d Reading Goal</string>
+    <string name="goal_of_books">of %1$d books</string>
+    <string name="goal_books_left">%1$d to go</string>
+    <string name="goal_reached">Goal reached. Beautifully done.</string>
+    <string name="goal_set_prompt">Set a reading goal for %1$d</string>
+    <string name="goal_set_action">Set goal</string>
+    <string name="goal_sheet_title">Reading goal for %1$d</string>
+    <string name="goal_sheet_subtitle">How many books would you like to finish this year?</string>
+    <string name="goal_books_label">Books</string>
+    <string name="goal_save">Save goal</string>
+    <string name="goal_remove">Remove goal</string>
+    <string name="stat_streak">Day streak</string>
+    <string name="stat_pages_week">Pages this week</string>
+    <string name="stat_pace">Pages a day</string>
+    <string name="days_left_estimate">About %1$d reading days left</string>
+    <string name="one_day_left_estimate">About a day of reading left</string>
+    <string name="edit_goal">Edit reading goal</string>
     <!-- Errors -->
     <string name="error_title_required">Title is required</string>
     <string name="error_author_required">Author is required</string>

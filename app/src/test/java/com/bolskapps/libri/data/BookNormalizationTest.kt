@@ -1,6 +1,7 @@
 package com.bolskapps.libri.data
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
 import org.junit.Test
 
 /**
@@ -117,5 +118,47 @@ class BookNormalizationTest {
         val result = book(currentPage = 150, totalPages = 300).normalized()
         assertEquals(0.5f, result.progress, 0.001f)
         assertEquals(50, result.progressPercent)
+    }
+
+    // ---- finishedAt -------------------------------------------------------
+
+    @Test
+    fun `finishing stamps the completion time`() {
+        val result = book(currentPage = 300, totalPages = 300)
+            .normalized(now = NOW, previousFinishedAt = null)
+
+        assertEquals(NOW, result.finishedAt)
+    }
+
+    @Test
+    fun `re-saving a finished book keeps the original date`() {
+        // Otherwise any later edit — a rating, a typo fix — would drag the book into
+        // the current year's goal.
+        val result = book(currentPage = 300, totalPages = 300, status = ReadingStatus.FINISHED)
+            .normalized(now = NOW, previousFinishedAt = EARLIER)
+
+        assertEquals(EARLIER, result.finishedAt)
+    }
+
+    @Test
+    fun `leaving the finished shelf clears the completion time`() {
+        val result = book(currentPage = 120, totalPages = 300, status = ReadingStatus.FINISHED)
+            .normalized(now = NOW, previousFinishedAt = EARLIER)
+
+        assertEquals(ReadingStatus.READING, result.status)
+        assertNull(result.finishedAt)
+    }
+
+    @Test
+    fun `an unfinished book never carries a completion time`() {
+        val result = book(currentPage = 10, totalPages = 300)
+            .normalized(now = NOW, previousFinishedAt = null)
+
+        assertNull(result.finishedAt)
+    }
+
+    private companion object {
+        const val EARLIER = 1_700_000_000_000L
+        const val NOW = 1_800_000_000_000L
     }
 }

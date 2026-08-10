@@ -17,6 +17,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Brush
+import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material.icons.automirrored.outlined.MenuBook
 import androidx.compose.material.icons.outlined.MoreHoriz
 import androidx.compose.material.icons.outlined.Psychology
@@ -28,6 +29,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,6 +37,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -45,6 +48,7 @@ import com.bolskapps.libri.data.CoverSize
 import com.bolskapps.libri.data.ReadingStatus
 import com.bolskapps.libri.ui.AppViewModelProvider
 import com.bolskapps.libri.ui.components.BookCover
+import com.bolskapps.libri.ui.components.GoalSheet
 import com.bolskapps.libri.ui.components.GridBookCard
 import com.bolskapps.libri.ui.components.LibriBoxedField
 import com.bolskapps.libri.ui.components.LibriPrimaryButton
@@ -56,6 +60,7 @@ import com.bolskapps.libri.ui.components.statusLabel
 import com.bolskapps.libri.ui.theme.Libri
 import com.bolskapps.libri.ui.theme.LibriType
 import java.util.Calendar
+import kotlin.math.roundToInt
 
 @Composable
 fun DashboardScreen(
@@ -68,6 +73,7 @@ fun DashboardScreen(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val form by viewModel.progressForm.collectAsStateWithLifecycle()
     var sheetBook by remember { mutableStateOf<Book?>(null) }
+    var showGoalSheet by rememberSaveable { mutableStateOf(false) }
 
     Column(modifier = modifier.fillMaxWidth()) {
         LibriTopBar(
@@ -91,11 +97,23 @@ fun DashboardScreen(
             item { GreetingBlock() }
 
             item {
+                GoalCard(
+                    state = uiState,
+                    onEdit = { showGoalSheet = true }
+                )
+            }
+
+            item {
                 CurrentlyReadingCard(
                     count = uiState.activeCount,
                     hero = uiState.heroBook,
+                    daysLeft = uiState.heroDaysLeft,
                     onHeroClick = { book -> sheetBook = book }
                 )
+            }
+
+            if (uiState.stats.currentStreakDays > 0 || uiState.stats.pagesThisWeek > 0) {
+                item { StatsRow(stats = uiState.stats) }
             }
 
             item {
@@ -155,6 +173,139 @@ fun DashboardScreen(
             onDelete = viewModel::deleteBook
         )
     }
+
+    if (showGoalSheet) {
+        GoalSheet(
+            year = uiState.year,
+            currentTarget = uiState.goalTarget,
+            onDismiss = { showGoalSheet = false },
+            onSave = viewModel::setGoal,
+            onClear = viewModel::clearGoal
+        )
+    }
+}
+
+/**
+ * The yearly goal. Before one is set this is a single invitation line — an empty ring
+ * reading "0 of 0" would be noise on a brand new install.
+ */
+@Composable
+private fun GoalCard(
+    state: DashboardUiState,
+    onEdit: () -> Unit
+) {
+    LibriCard(onClick = onEdit) {
+        if (!state.hasGoal) {
+            Text(
+                text = stringResource(R.string.goal_set_prompt, state.year),
+                style = LibriType.headlineMd,
+                color = Libri.Primary
+            )
+            Text(
+                text = stringResource(R.string.goal_set_action),
+                style = LibriType.labelMd,
+                color = Libri.Secondary,
+                modifier = Modifier.padding(top = 8.dp)
+            )
+            return@LibriCard
+        }
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.Top
+        ) {
+            Text(
+                text = stringResource(R.string.goal_title, state.year).uppercase(),
+                style = LibriType.labelMd,
+                color = Libri.OnSurfaceVariant
+            )
+            Icon(
+                imageVector = Icons.Outlined.Edit,
+                contentDescription = stringResource(R.string.edit_goal),
+                tint = Libri.OutlineVariant,
+                modifier = Modifier.size(18.dp)
+            )
+        }
+
+        Row(verticalAlignment = Alignment.Bottom, modifier = Modifier.padding(top = 4.dp)) {
+            Text(
+                text = state.booksFinishedThisYear.toString(),
+                style = LibriType.displayLg,
+                color = Libri.Primary
+            )
+            Text(
+                text = stringResource(R.string.goal_of_books, state.goalTarget ?: 0),
+                style = LibriType.bodyMd,
+                color = Libri.OnSurfaceVariant,
+                modifier = Modifier.padding(start = 8.dp, bottom = 10.dp)
+            )
+        }
+
+        LibriProgressBar(
+            progress = state.goalProgress,
+            height = 8.dp,
+            color = Libri.SecondaryFixedDim,
+            modifier = Modifier.padding(top = 8.dp)
+        )
+
+        Text(
+            text = if (state.goalReached) {
+                stringResource(R.string.goal_reached)
+            } else {
+                stringResource(R.string.goal_books_left, state.goalRemaining)
+            },
+            style = LibriType.labelSm,
+            color = if (state.goalReached) Libri.Secondary else Libri.OnSurfaceVariant,
+            modifier = Modifier.padding(top = 8.dp)
+        )
+    }
+}
+
+/** Streak, weekly volume and pace — the three numbers that reward coming back. */
+@Composable
+private fun StatsRow(stats: com.bolskapps.libri.data.ReadingStats) {
+    Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+        StatTile(
+            value = stats.currentStreakDays.toString(),
+            label = stringResource(R.string.stat_streak),
+            modifier = Modifier.weight(1f)
+        )
+        StatTile(
+            value = stats.pagesThisWeek.toString(),
+            label = stringResource(R.string.stat_pages_week),
+            modifier = Modifier.weight(1f)
+        )
+        StatTile(
+            value = stats.pagesPerActiveDay.roundToInt().toString(),
+            label = stringResource(R.string.stat_pace),
+            modifier = Modifier.weight(1f)
+        )
+    }
+}
+
+@Composable
+private fun StatTile(
+    value: String,
+    label: String,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier
+            .clip(RoundedCornerShape(12.dp))
+            .background(Libri.SurfaceContainerLow)
+            .padding(vertical = 16.dp, horizontal = 8.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(text = value, style = LibriType.headlineMd, color = Libri.Primary)
+        Text(
+            text = label,
+            style = LibriType.labelSm,
+            color = Libri.OnSurfaceVariant,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(top = 2.dp)
+        )
+    }
 }
 
 @Composable
@@ -186,6 +337,7 @@ private fun GreetingBlock() {
 private fun CurrentlyReadingCard(
     count: Int,
     hero: Book?,
+    daysLeft: Int?,
     onHeroClick: (Book) -> Unit
 ) {
     LibriCard {
@@ -285,6 +437,19 @@ private fun CurrentlyReadingCard(
                             ),
                             style = LibriType.labelSm,
                             color = Libri.OnSurfaceVariant
+                        )
+                    }
+                    // Only shown once there are sessions to project a pace from.
+                    if (daysLeft != null) {
+                        Text(
+                            text = if (daysLeft == 1) {
+                                stringResource(R.string.one_day_left_estimate)
+                            } else {
+                                stringResource(R.string.days_left_estimate, daysLeft)
+                            },
+                            style = LibriType.labelSm,
+                            color = Libri.Secondary,
+                            modifier = Modifier.padding(top = 4.dp)
                         )
                     }
                 }
@@ -414,7 +579,10 @@ private fun CategoryGrid(onCategory: (String?) -> Unit) {
 
 /** "Level 1" surface from DESIGN.md: white, 16dp radius, soft Ink Blue ambient shadow. */
 @Composable
-private fun LibriCard(content: @Composable androidx.compose.foundation.layout.ColumnScope.() -> Unit) {
+private fun LibriCard(
+    onClick: (() -> Unit)? = null,
+    content: @Composable androidx.compose.foundation.layout.ColumnScope.() -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -426,6 +594,7 @@ private fun LibriCard(content: @Composable androidx.compose.foundation.layout.Co
             )
             .clip(RoundedCornerShape(16.dp))
             .background(Libri.SurfaceContainerLowest)
+            .then(if (onClick != null) Modifier.clickable(onClick = onClick) else Modifier)
             .padding(24.dp),
         content = content
     )

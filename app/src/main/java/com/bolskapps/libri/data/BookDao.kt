@@ -48,6 +48,16 @@ interface BookDao {
     @Query("SELECT * FROM books WHERE openLibraryKey = :key LIMIT 1")
     suspend fun getBookByOpenLibraryKey(key: String): Book?
 
+    /** Books finished inside a window — the numerator of the yearly reading goal. */
+    @Query(
+        """
+        SELECT * FROM books
+        WHERE status = 'FINISHED' AND finishedAt >= :from AND finishedAt < :until
+        ORDER BY finishedAt DESC
+        """
+    )
+    fun getBooksFinishedBetween(from: Long, until: Long): Flow<List<Book>>
+
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insert(book: Book): Long
 

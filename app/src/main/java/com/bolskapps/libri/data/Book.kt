@@ -27,7 +27,12 @@ data class Book(
     /** Open Library work key, e.g. `/works/OL45883W`. Lets us re-fetch details later. */
     val openLibraryKey: String? = null,
     /** Drives the dashboard's "Recently Added" ordering. */
-    val addedAt: Long = 0L
+    val addedAt: Long = 0L,
+    /**
+     * When the book reached the Finished shelf. Null on every other shelf.
+     * This is what makes "books read this year" answerable — [addedAt] cannot.
+     */
+    val finishedAt: Long? = null
 ) {
     val isFinished: Boolean get() = status == ReadingStatus.FINISHED
 

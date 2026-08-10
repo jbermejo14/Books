@@ -7,14 +7,16 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
 @Database(
-    entities = [Book::class],
-    version = 1,
+    entities = [Book::class, ReadingSession::class, ReadingGoal::class],
+    version = 2,
     exportSchema = true
 )
 @TypeConverters(Converters::class)
 abstract class BookDatabase : RoomDatabase() {
 
     abstract fun bookDao(): BookDao
+    abstract fun readingSessionDao(): ReadingSessionDao
+    abstract fun readingGoalDao(): ReadingGoalDao
 
     companion object {
         private const val DATABASE_NAME = "book_database"
@@ -29,10 +31,10 @@ abstract class BookDatabase : RoomDatabase() {
                     BookDatabase::class.java,
                     DATABASE_NAME
                 )
-                    // No destructive fallback: this is the shipping schema, and a user's
-                    // library is the whole value of the app. Every future version bump
-                    // must add a Migration here — the exported schemas under app/schemas
-                    // are what those migrations are written and tested against.
+                    .addMigrations(*ALL_MIGRATIONS)
+                    // No destructive fallback: a user's library is the whole value of
+                    // the app. A version bump without a migration must fail loudly here
+                    // rather than silently delete it.
                     .build()
                     .also { INSTANCE = it }
             }
