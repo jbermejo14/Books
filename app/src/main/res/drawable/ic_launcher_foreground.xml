@@ -1,28 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  Adaptive icon foreground. The 108dp canvas is cropped by the system mask, so all
+  content is kept inside the central 72dp safe zone (x/y 18..90).
+  Palette: Paper White pages and a Warm Amber spine over the Ink Blue background.
+-->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
 
-    <!-- Book cover -->
+    <!-- Left page -->
     <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M30,32h44a6,6 0,0 1,6 6v36a6,6 0,0 1,-6 6H30a6,6 0,0 1,-6 -6V38a6,6 0,0 1,6 -6z" />
+        android:fillColor="#FBF9F8"
+        android:pathData="M26,38c8,-4 16,-4 26,0v34c-10,-4 -18,-4 -26,0z" />
+
+    <!-- Right page -->
+    <path
+        android:fillColor="#FBF9F8"
+        android:pathData="M56,38c10,-4 18,-4 26,0v34c-8,-4 -16,-4 -26,0z" />
 
     <!-- Spine -->
     <path
-        android:fillColor="#D0BCFF"
-        android:pathData="M24,38a6,6 0,0 1,6 -6h6v48h-6a6,6 0,0 1,-6 -6z" />
-
-    <!-- Text lines -->
-    <path
-        android:fillColor="#6750A4"
-        android:pathData="M44,46h28v4h-28z" />
-    <path
-        android:fillColor="#6750A4"
-        android:pathData="M44,56h28v4h-28z" />
-    <path
-        android:fillColor="#6750A4"
-        android:pathData="M44,66h18v4h-18z" />
+        android:fillColor="#F0BD8B"
+        android:pathData="M52.5,37h3v37h-3z" />
 </vector>

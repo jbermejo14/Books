@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">BookTracker</string>
+    <string name="app_name">Libri</string>
 
     <!-- Bottom navigation -->
     <string name="nav_dashboard">Dashboard</string>
@@ -68,6 +68,8 @@
     <string name="add_to_library">ADD TO LIBRARY</string>
     <string name="search_open_library">Search Open Library</string>
     <string name="searching">Searching Open Library…</string>
+    <string name="search_rate_limited">Open Library is busy right now. Give it a moment and try again.</string>
+    <string name="search_server_error">Open Library returned an error. Try again later.</string>
     <string name="search_failed">Could not reach Open Library. Check your connection or fill the form manually.</string>
     <string name="search_hint">Start typing a title to search Open Library</string>
     <string name="already_in_library">This book is already in your library.</string>

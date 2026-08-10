@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ic_launcher_background">#FF381E72</color>
+    <!-- Libri "Ink Blue" — the adaptive launcher icon background. -->
+    <color name="ic_launcher_background">#FF03192E</color>
 </resources>

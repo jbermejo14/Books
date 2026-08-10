@@ -13,6 +13,12 @@ captures/
 # Machine-specific: points at this workstation's Android SDK
 local.properties
 
+# Release signing material. NEVER commit these — losing or leaking the upload key
+# means you can never publish an update to the same Play listing again.
+keystore.properties
+*.jks
+*.keystore
+
 # IDE
 *.iml
 .idea/

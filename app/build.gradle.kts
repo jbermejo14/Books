@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -6,12 +8,31 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
+/**
+ * Release signing material is never committed. It is read from an untracked
+ * `keystore.properties` at the repo root, falling back to environment variables so
+ * CI can inject the same values as secrets. See RELEASING.md.
+ */
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+val keystoreProperties = Properties().apply {
+    if (keystorePropertiesFile.exists()) {
+        keystorePropertiesFile.inputStream().use { load(it) }
+    }
+}
+
+fun signingSecret(key: String, env: String): String? =
+    keystoreProperties.getProperty(key) ?: System.getenv(env)
+
+// Without a keystore the release build still assembles — just unsigned — so a fresh
+// clone can compile everything without holding the signing key.
+val hasReleaseSigning = signingSecret("storeFile", "LIBRI_STORE_FILE") != null
+
 android {
-    namespace = "com.example.booktracker"
+    namespace = "com.bolskapps.libri"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.booktracker"
+        applicationId = "com.bolskapps.libri"
         minSdk = 26
         targetSdk = 35
         versionCode = 1
@@ -21,14 +42,33 @@ android {
         vectorDrawables { useSupportLibrary = true }
     }
 
+    signingConfigs {
+        if (hasReleaseSigning) {
+            create("release") {
+                storeFile = file(signingSecret("storeFile", "LIBRI_STORE_FILE")!!)
+                storePassword = signingSecret("storePassword", "LIBRI_STORE_PASSWORD")
+                keyAlias = signingSecret("keyAlias", "LIBRI_KEY_ALIAS")
+                keyPassword = signingSecret("keyPassword", "LIBRI_KEY_PASSWORD")
+            }
+        }
+    }
+
     buildTypes {
         release {
+            if (hasReleaseSigning) {
+                signingConfig = signingConfigs.getByName("release")
+            }
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+        debug {
+            // Lets a debug build sit alongside a Play install of the same app.
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
         }
     }
 
@@ -52,7 +92,7 @@ android {
     }
 }
 
-// Room: keep generated schemas under app/schemas for future migrations.
+// Room: keep generated schemas under app/schemas so migrations can be written and tested.
 ksp {
     arg("room.schemaLocation", "$projectDir/schemas")
 }
@@ -94,8 +134,11 @@ dependencies {
 
     // Test
     testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.okhttp.mockwebserver)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.room.testing)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
 

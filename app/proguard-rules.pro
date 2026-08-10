@@ -3,7 +3,7 @@
 # Room generates its implementations at compile time, but the entity is read
 # reflectively by the type converters.
 # ---------------------------------------------------------------------------
--keep class com.example.booktracker.data.Book { *; }
+-keep class com.bolskapps.libri.data.Book { *; }
 
 # ---------------------------------------------------------------------------
 # kotlinx.serialization
@@ -20,11 +20,11 @@
     kotlinx.serialization.KSerializer serializer(...);
 }
 
--keep,includedescriptorclasses class com.example.booktracker.data.remote.**$$serializer { *; }
--keepclassmembers class com.example.booktracker.data.remote.** {
+-keep,includedescriptorclasses class com.bolskapps.libri.data.remote.**$$serializer { *; }
+-keepclassmembers class com.bolskapps.libri.data.remote.** {
     *** Companion;
 }
--keepclasseswithmembers class com.example.booktracker.data.remote.** {
+-keepclasseswithmembers class com.bolskapps.libri.data.remote.** {
     kotlinx.serialization.KSerializer serializer(...);
 }
 
@@ -33,7 +33,7 @@
 # Interface methods are invoked through a dynamic proxy, and suspend functions
 # carry their return type only in the generic signature.
 # ---------------------------------------------------------------------------
--keep,allowobfuscation interface com.example.booktracker.data.remote.OpenLibraryApi
+-keep,allowobfuscation interface com.bolskapps.libri.data.remote.OpenLibraryApi
 -keep,allowobfuscation,allowshrinking interface retrofit2.Call
 -keep,allowobfuscation,allowshrinking class retrofit2.Response
 -keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
